@@ -1,0 +1,595 @@
+{
+  "rules": {
+    "generic_banner": [
+      {
+        "id": "ssh-openssh",
+        "regex": "SSH-([\\d.]+)[-_](\\w+)",
+        "vendor": "openbsd",
+        "product": "openssh",
+        "name": "OpenSSH",
+        "protocol": "ssh",
+        "confidence": 0.95
+      },
+      {
+        "id": "ssh-dropbear",
+        "regex": "SSH-([\\d.]+)[-_]dropbear",
+        "vendor": "dropbear",
+        "product": "dropbear",
+        "name": "Dropbear SSH",
+        "protocol": "ssh",
+        "confidence": 0.95
+      },
+      {
+        "id": "ftp-proftpd",
+        "regex": "ProFTPD\\s+([\\d.]+)",
+        "vendor": "proftpd",
+        "product": "proftpd",
+        "name": "ProFTPD",
+        "protocol": "ftp",
+        "confidence": 0.9
+      },
+      {
+        "id": "ftp-vsftpd",
+        "regex": "vsFTPd\\s+([\\d.]+)",
+        "vendor": "vsftpd",
+        "product": "vsftpd",
+        "name": "vsFTPd",
+        "protocol": "ftp",
+        "confidence": 0.9
+      },
+      {
+        "id": "ftp-pureftpd",
+        "regex": "Pure-FTPd",
+        "vendor": "pureftpd",
+        "product": "pure-ftpd",
+        "name": "Pure-FTPd",
+        "protocol": "ftp",
+        "confidence": 0.85
+      },
+      {
+        "id": "ftp-generic",
+        "regex": "^220[\\s-].*FTP",
+        "vendor": null,
+        "product": null,
+        "name": "FTP Server",
+        "protocol": "ftp",
+        "confidence": 0.6
+      },
+      {
+        "id": "smtp-postfix",
+        "regex": "Postfix",
+        "vendor": "postfix",
+        "product": "postfix",
+        "name": "Postfix",
+        "protocol": "smtp",
+        "confidence": 0.85
+      },
+      {
+        "id": "smtp-exim",
+        "regex": "Exim\\s+([\\d.]+)",
+        "vendor": "exim",
+        "product": "exim",
+        "name": "Exim",
+        "protocol": "smtp",
+        "confidence": 0.9
+      },
+      {
+        "id": "smtp-microsoft",
+        "regex": "Microsoft\\s+ESMTP",
+        "vendor": "microsoft",
+        "product": "exchange",
+        "name": "Microsoft Exchange",
+        "protocol": "smtp",
+        "confidence": 0.85
+      },
+      {
+        "id": "smtp-sendmail",
+        "regex": "Sendmail\\s+([\\d.]+)",
+        "vendor": "sendmail",
+        "product": "sendmail",
+        "name": "Sendmail",
+        "protocol": "smtp",
+        "confidence": 0.9
+      },
+      {
+        "id": "smtp-generic",
+        "regex": "^220[\\s-].*ESMTP",
+        "vendor": null,
+        "product": null,
+        "name": "SMTP Server",
+        "protocol": "smtp",
+        "confidence": 0.5
+      },
+      {
+        "id": "mysql",
+        "regex": "mysql_native_password|caching_sha2_password",
+        "vendor": "oracle",
+        "product": "mysql",
+        "name": "MySQL",
+        "protocol": "mysql",
+        "confidence": 0.8
+      },
+      {
+        "id": "mysql-version",
+        "regex": "(\\d+\\.\\d+\\.\\d+).*mysql",
+        "vendor": "oracle",
+        "product": "mysql",
+        "name": "MySQL",
+        "protocol": "mysql",
+        "confidence": 0.85
+      },
+      {
+        "id": "mariadb",
+        "regex": "(\\d+\\.\\d+\\.\\d+).*[Mm]aria[Db]b",
+        "vendor": "mariadb",
+        "product": "mariadb",
+        "name": "MariaDB",
+        "protocol": "mysql",
+        "confidence": 0.9
+      },
+      {
+        "id": "postgresql",
+        "regex": "PostgreSQL",
+        "vendor": "postgresql",
+        "product": "postgresql",
+        "name": "PostgreSQL",
+        "protocol": "postgresql",
+        "confidence": 0.7
+      },
+      {
+        "id": "redis-pong",
+        "regex": "\\+PONG",
+        "vendor": "redis",
+        "product": "redis",
+        "name": "Redis",
+        "protocol": "redis",
+        "confidence": 0.6
+      },
+      {
+        "id": "redis-noauth",
+        "regex": "-NOAUTH",
+        "vendor": "redis",
+        "product": "redis",
+        "name": "Redis",
+        "protocol": "redis",
+        "confidence": 0.8
+      },
+      {
+        "id": "redis-error",
+        "regex": "-ERR\\s",
+        "vendor": "redis",
+        "product": "redis",
+        "name": "Redis",
+        "protocol": "redis",
+        "confidence": 0.7
+      },
+      {
+        "id": "pop3-dovecot",
+        "regex": "Dovecot.*(?:POP3|pop3)",
+        "vendor": "dovecot",
+        "product": "dovecot",
+        "name": "Dovecot POP3",
+        "protocol": "pop3",
+        "confidence": 0.9
+      },
+      {
+        "id": "pop3-generic",
+        "regex": "^\\+OK.*POP3",
+        "vendor": null,
+        "product": null,
+        "name": "POP3 Server",
+        "protocol": "pop3",
+        "confidence": 0.6
+      },
+      {
+        "id": "imap-dovecot",
+        "regex": "Dovecot.*(?:IMAP|imap)",
+        "vendor": "dovecot",
+        "product": "dovecot",
+        "name": "Dovecot IMAP",
+        "protocol": "imap",
+        "confidence": 0.9
+      },
+      {
+        "id": "imap-generic",
+        "regex": "^\\* OK.*IMAP",
+        "vendor": null,
+        "product": null,
+        "name": "IMAP Server",
+        "protocol": "imap",
+        "confidence": 0.6
+      },
+      {
+        "id": "mongodb",
+        "regex": "MongoDB|ismaster",
+        "vendor": "mongodb",
+        "product": "mongodb",
+        "name": "MongoDB",
+        "protocol": "mongodb",
+        "confidence": 0.75
+      },
+      {
+        "id": "dns-bind",
+        "regex": "BIND",
+        "vendor": "isc",
+        "product": "bind",
+        "name": "BIND DNS",
+        "protocol": "dns",
+        "confidence": 0.6
+      }
+    ],
+    "http_get": [
+      {
+        "id": "http-apache",
+        "header": "server",
+        "regex": "Apache(?:/([\\d.]+))?",
+        "vendor": "apache",
+        "product": "httpd",
+        "name": "Apache HTTP Server",
+        "protocol": "http",
+        "confidence": 0.9
+      },
+      {
+        "id": "http-nginx",
+        "header": "server",
+        "regex": "nginx(?:/([\\d.]+))?",
+        "vendor": "nginx",
+        "product": "nginx",
+        "name": "nginx",
+        "protocol": "http",
+        "confidence": 0.9
+      },
+      {
+        "id": "http-iis",
+        "header": "server",
+        "regex": "Microsoft-IIS(?:/([\\d.]+))?",
+        "vendor": "microsoft",
+        "product": "iis",
+        "name": "Microsoft IIS",
+        "protocol": "http",
+        "confidence": 0.9
+      },
+      {
+        "id": "http-tomcat",
+        "header": "server",
+        "regex": "Apache-Coyote(?:/([\\d.]+))?",
+        "vendor": "apache",
+        "product": "tomcat",
+        "name": "Apache Tomcat",
+        "protocol": "http",
+        "confidence": 0.85
+      },
+      {
+        "id": "http-litespeed",
+        "header": "server",
+        "regex": "LiteSpeed",
+        "vendor": "litespeed",
+        "product": "litespeed",
+        "name": "LiteSpeed Web Server",
+        "protocol": "http",
+        "confidence": 0.9
+      },
+      {
+        "id": "http-caddy",
+        "header": "server",
+        "regex": "Caddy",
+        "vendor": "caddyserver",
+        "product": "caddy",
+        "name": "Caddy",
+        "protocol": "http",
+        "confidence": 0.85
+      },
+      {
+        "id": "http-gunicorn",
+        "header": "server",
+        "regex": "gunicorn(?:/([\\d.]+))?",
+        "vendor": "gunicorn",
+        "product": "gunicorn",
+        "name": "Gunicorn",
+        "protocol": "http",
+        "confidence": 0.85
+      },
+      {
+        "id": "http-jetty",
+        "header": "server",
+        "regex": "Jetty(?:/([\\d.]+))?",
+        "vendor": "eclipse",
+        "product": "jetty",
+        "name": "Jetty",
+        "protocol": "http",
+        "confidence": 0.9
+      },
+      {
+        "id": "http-nodejs",
+        "header": "x-powered-by",
+        "regex": "Express",
+        "vendor": "express",
+        "product": "express",
+        "name": "Express.js",
+        "protocol": "http",
+        "confidence": 0.8
+      },
+      {
+        "id": "http-php",
+        "header": "x-powered-by",
+        "regex": "PHP(?:/([\\d.]+))?",
+        "vendor": "php",
+        "product": "php",
+        "name": "PHP",
+        "protocol": "http",
+        "confidence": 0.8
+      },
+      {
+        "id": "http-aspnet",
+        "header": "x-powered-by",
+        "regex": "ASP\\.NET",
+        "vendor": "microsoft",
+        "product": "aspnet",
+        "name": "ASP.NET",
+        "protocol": "http",
+        "confidence": 0.8
+      },
+      {
+        "id": "http-django",
+        "header": "x-content-type-options",
+        "regex": "nosniff",
+        "vendor": "django",
+        "product": "django",
+        "name": "Django (probable)",
+        "protocol": "http",
+        "confidence": 0.3
+      },
+      {
+        "id": "http-openresty",
+        "header": "server",
+        "regex": "openresty(?:/([\\d.]+))?",
+        "vendor": "openresty",
+        "product": "openresty",
+        "name": "OpenResty",
+        "protocol": "http",
+        "confidence": 0.9
+      },
+      {
+        "id": "http-simplehttpserver",
+        "header": "server",
+        "regex": "SimpleHTTP(?:/([\\d.]+))?",
+        "vendor": "python",
+        "product": "http.server",
+        "name": "Python SimpleHTTPServer",
+        "protocol": "http",
+        "confidence": 0.85
+      },
+      {
+        "id": "http-jenkins",
+        "header": "x-jenkins",
+        "regex": "([\\d.]+)",
+        "vendor": "jenkins",
+        "product": "jenkins",
+        "name": "Jenkins",
+        "protocol": "http",
+        "confidence": 0.95
+      },
+      {
+        "id": "http-drupal",
+        "header": "x-generator",
+        "regex": "Drupal\\s+([\\d.]+)",
+        "vendor": "drupal",
+        "product": "drupal",
+        "name": "Drupal",
+        "protocol": "http",
+        "confidence": 0.9
+      },
+      {
+        "id": "http-sharepoint",
+        "header": "microsoftsharepointteamservices",
+        "regex": "([\\d.]+)",
+        "vendor": "microsoft",
+        "product": "sharepoint",
+        "name": "Microsoft SharePoint",
+        "protocol": "http",
+        "confidence": 0.9
+      },
+      {
+        "id": "http-weblogic",
+        "header": "server",
+        "regex": "WebLogic(?:\\s+Server)?(?:/([\\d.]+))?",
+        "vendor": "oracle",
+        "product": "weblogic",
+        "name": "Oracle WebLogic",
+        "protocol": "http",
+        "confidence": 0.9
+      },
+      {
+        "id": "http-bigip",
+        "header": "set-cookie",
+        "regex": "BIGipServer[^=]*=([^;]+)",
+        "vendor": "f5",
+        "product": "bigip",
+        "name": "F5 BIG-IP",
+        "protocol": "http",
+        "confidence": 0.85
+      },
+      {
+        "id": "http-netscaler",
+        "header": "set-cookie",
+        "regex": "NSC_[^=]*=",
+        "vendor": "citrix",
+        "product": "netscaler",
+        "name": "Citrix NetScaler",
+        "protocol": "http",
+        "confidence": 0.85
+      },
+      {
+        "id": "http-fortios",
+        "header": "server",
+        "regex": "FortiGate(?:-([\\d.]+))?",
+        "vendor": "fortinet",
+        "product": "fortios",
+        "name": "Fortinet FortiOS",
+        "protocol": "http",
+        "confidence": 0.85
+      },
+      {
+        "id": "http-sonicwall",
+        "header": "server",
+        "regex": "SonicWall\\s+([\\d.]+)",
+        "vendor": "sonicwall",
+        "product": "sonicos",
+        "name": "SonicWall SonicOS",
+        "protocol": "http",
+        "confidence": 0.85
+      },
+      {
+        "id": "http-wso2",
+        "header": "server",
+        "regex": "WSO2\\s+([\\d.]+)",
+        "vendor": "wso2",
+        "product": "identity_server",
+        "name": "WSO2 Identity Server",
+        "protocol": "http",
+        "confidence": 0.85
+      },
+      {
+        "id": "http-confluence",
+        "regex": "ajs-version-number.*?content=\"([\\d.]+)\"|<title>.*?Confluence.*?</title>",
+        "vendor": "atlassian",
+        "product": "confluence",
+        "name": "Atlassian Confluence",
+        "protocol": "http",
+        "confidence": 0.9
+      },
+      {
+        "id": "http-gitlab",
+        "regex": "<meta\\s+content=\"GitLab\\s+([\\d.]+)\"|<title>Sign in · GitLab</title>",
+        "vendor": "gitlab",
+        "product": "gitlab",
+        "name": "GitLab",
+        "protocol": "http",
+        "confidence": 0.85
+      },
+      {
+        "id": "http-wordpress",
+        "regex": "<meta\\s+name=\"generator\"\\s+content=\"WordPress\\s+([\\d.]+)\"",
+        "vendor": "wordpress",
+        "product": "wordpress",
+        "name": "WordPress",
+        "protocol": "http",
+        "confidence": 0.85
+      },
+      {
+        "id": "http-zimbra",
+        "regex": "<title>Zimbra",
+        "vendor": "zimbra",
+        "product": "zimbra",
+        "name": "Zimbra",
+        "protocol": "http",
+        "confidence": 0.85
+      },
+      {
+        "id": "http-teamcity",
+        "regex": "<title>TeamCity",
+        "vendor": "jetbrains",
+        "product": "teamcity",
+        "name": "JetBrains TeamCity",
+        "protocol": "http",
+        "confidence": 0.85
+      },
+      {
+        "id": "http-vcenter",
+        "regex": "<title>VMware vSphere",
+        "vendor": "vmware",
+        "product": "vcenter",
+        "name": "VMware vCenter",
+        "protocol": "http",
+        "confidence": 0.85
+      },
+      {
+        "id": "http-zabbix",
+        "regex": "<title>.*?Zabbix",
+        "vendor": "zabbix",
+        "product": "zabbix",
+        "name": "Zabbix",
+        "protocol": "http",
+        "confidence": 0.85
+      },
+      {
+        "id": "http-harbor",
+        "regex": "<title>Harbor",
+        "vendor": "goharbor",
+        "product": "harbor",
+        "name": "Harbor",
+        "protocol": "http",
+        "confidence": 0.85
+      },
+      {
+        "id": "http-panos",
+        "regex": "<title>Palo Alto Networks",
+        "vendor": "paloalto",
+        "product": "panos",
+        "name": "Palo Alto PAN-OS",
+        "protocol": "http",
+        "confidence": 0.85
+      },
+      {
+        "id": "http-ivanti",
+        "regex": "<title>Ivanti",
+        "vendor": "ivanti",
+        "product": "connect_secure",
+        "name": "Ivanti Connect Secure",
+        "protocol": "http",
+        "confidence": 0.85
+      },
+      {
+        "id": "http-activemq",
+        "regex": "<title>Apache ActiveMQ",
+        "vendor": "apache",
+        "product": "activemq",
+        "name": "Apache ActiveMQ",
+        "protocol": "http",
+        "confidence": 0.85
+      },
+      {
+        "id": "http-generic",
+        "header": "server",
+        "regex": ".+",
+        "vendor": null,
+        "product": null,
+        "name": "HTTP Server",
+        "protocol": "http",
+        "confidence": 0.3
+      }
+    ],
+    "tls_https_get": [
+      {
+        "id": "https-cloudflare",
+        "header": "server",
+        "regex": "cloudflare",
+        "vendor": "cloudflare",
+        "product": "cloudflare",
+        "name": "Cloudflare",
+        "protocol": "https",
+        "confidence": 0.9
+      },
+      {
+        "id": "https-haproxy",
+        "header": "server",
+        "regex": "haproxy",
+        "vendor": "haproxy",
+        "product": "haproxy",
+        "name": "HAProxy",
+        "protocol": "https",
+        "confidence": 0.8
+      },
+      {
+        "id": "https-cert-commonname",
+        "subject_cn": ".+",
+        "regex": null,
+        "vendor": null,
+        "product": null,
+        "name": "TLS Service",
+        "protocol": "https",
+        "confidence": 0.3
+      }
+    ]
+  }
+}
