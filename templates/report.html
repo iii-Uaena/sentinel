@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sentinel Scan Report &mdash; {{ report.targets|join(', ') }}</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --border: #30363d;
+    --text: #c9d1d9;
+    --text-muted: #8b949e;
+    --red: #da3633;
+    --orange: #d29922;
+    --yellow: #e3b341;
+    --blue: #58a6ff;
+    --green: #3fb950;
+    --gray: #484f58;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 2rem 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  header h1 { font-size: 1.6rem; font-weight: 600; color: #fff; }
+  header p { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; }
+
+  /* Overview Cards */
+  .overview {
+    display: flex; flex-wrap: wrap; gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    min-width: 150px;
+    flex: 1 1 auto;
+  }
+  .card .label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+  .card .value { font-size: 1.35rem; font-weight: 600; color: #fff; margin-top: 0.25rem; }
+  .card .sublabel { font-size: 0.7rem; color: var(--text-muted); }
+
+  /* Severity Chips */
+  .severity-CRITICAL { color: var(--red); font-weight: 600; }
+  .severity-HIGH     { color: var(--orange); font-weight: 600; }
+  .severity-MEDIUM   { color: var(--yellow); font-weight: 600; }
+  .severity-LOW      { color: var(--blue); font-weight: 600; }
+  .severity-UNKNOWN  { color: var(--gray); }
+
+  .tag {
+    display: inline-block; padding: 0.1em 0.5em; border-radius: 4px;
+    font-size: 0.72rem; font-weight: 600; color: #000;
+  }
+  .tag-CRITICAL { background: var(--red); }
+  .tag-HIGH     { background: var(--orange); }
+  .tag-MEDIUM   { background: var(--yellow); }
+  .tag-LOW      { background: var(--blue); color: #fff; }
+
+  /* Host Status */
+  .host-up   { color: var(--green); }
+  .host-down { color: var(--red); }
+
+  /* Tables */
+  section { margin-bottom: 2rem; }
+  section h2 { font-size: 1.15rem; font-weight: 600; margin-bottom: 0.75rem; color: #fff; }
+  section h3 { font-size: 1rem; font-weight: 600; margin: 1.25rem 0 0.5rem; color: #fff; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  thead { background: var(--surface); }
+  th { text-align: left; padding: 0.5rem 0.75rem; color: var(--text-muted); font-weight: 500; border-bottom: 2px solid var(--border); white-space: nowrap; }
+  td { padding: 0.4rem 0.75rem; border-bottom: 1px solid var(--border); }
+  tbody tr:hover { background: rgba(255,255,255,0.03); }
+
+  /* Confidence Dimming */
+  .confidence-low { opacity: 0.45; font-style: italic; }
+
+  /* Host Accordion */
+  .host-detail {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+  }
+  .host-detail summary {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    color: #fff;
+    user-select: none;
+  }
+  .host-detail summary:hover { background: rgba(255,255,255,0.03); }
+  .host-detail .content { padding: 0 1rem 1rem; }
+
+  /* Empty State */
+  .empty { color: var(--text-muted); font-size: 0.85rem; padding: 0.5rem 0; }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Sentinel Scan Report</h1>
+  <p>Generated {{ report.start_time }} &middot; Duration {{ '%.1f'|format(report.duration_seconds) }}s</p>
+</header>
+
+<!-- Overview Cards -->
+<section class="overview">
+  <div class="card">
+    <div class="label">Targets</div>
+    <div class="value">{{ report.targets|length }}</div>
+  </div>
+  <div class="card">
+    <div class="label">Open Ports</div>
+    <div class="value">{{ total_open_ports }}</div>
+  </div>
+  <div class="card">
+    <div class="label">Services Identified</div>
+    <div class="value">{{ total_services }}</div>
+  </div>
+  <div class="card">
+    <div class="label">CVE Matches</div>
+    <div class="value">{{ total_cves }}</div>
+    <div class="sublabel">
+      {% if cve_by_severity.CRITICAL %}<span class="severity-CRITICAL">CRIT {{ cve_by_severity.CRITICAL }}</span> {% endif %}
+      {% if cve_by_severity.HIGH %}<span class="severity-HIGH">HIGH {{ cve_by_severity.HIGH }}</span> {% endif %}
+      {% if cve_by_severity.MEDIUM %}<span class="severity-MEDIUM">MED {{ cve_by_severity.MEDIUM }}</span>{% endif %}
+    </div>
+  </div>
+  <div class="card">
+    <div class="label">Hosts Up / Down</div>
+    <div class="value"><span class="host-up">{{ hosts_up }}</span> / <span class="host-down">{{ hosts_down }}</span></div>
+  </div>
+</section>
+
+<!-- Host Summary -->
+<section>
+  <h2>Host Summary</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Host</th><th>Status</th><th>Open Ports</th><th>Services</th><th>CVEs</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for h in hosts %}
+      <tr>
+        <td><a href="#host-{{ loop.index }}" style="color:var(--blue);text-decoration:none;">{{ h.host }}</a></td>
+        <td class="{% if h.status == 'up' %}host-up{% else %}host-down{% endif %}">{{ h.status }}</td>
+        <td>{{ h.open_ports }}</td>
+        <td>{{ h.service_count }}</td>
+        <td>{{ h.cve_count }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<!-- Per-Host Detail -->
+{% for h in hosts %}
+<details class="host-detail" id="host-{{ loop.index }}" {% if h.status == 'up' and h.service_count > 0 %}open{% endif %}>
+  <summary>
+    {{ h.host }}
+    <span class="{{ 'host-up' if h.status == 'up' else 'host-down' }}" style="font-weight:400;">&mdash; {{ h.status }}</span>
+    <span style="font-weight:400;color:var(--text-muted);">
+      &middot; {{ h.open_ports }} open ports &middot; {{ h.service_count }} services &middot; {{ h.cve_count }} CVEs
+    </span>
+  </summary>
+
+  <div class="content">
+    {% if h.ports %}
+    <h3>Ports &amp; Services</h3>
+    <table>
+      <thead>
+        <tr><th>Port</th><th>Status</th><th>Proto</th><th>Service</th><th>Version</th><th>Conf</th><th>RTT</th></tr>
+      </thead>
+      <tbody>
+        {% for p in h.ports %}
+        <tr class="{% if not p.is_identified %}confidence-low{% endif %}">
+          <td>{{ p.port }}</td>
+          <td>{{ p.status }}</td>
+          <td>{{ p.protocol }}</td>
+          <td>{{ p.service_name or '-' }}</td>
+          <td>{{ p.version or '-' }}</td>
+          <td>{% if p.confidence is not none %}{{ '%.0f'|format(p.confidence * 100) }}%{% else %}-{% endif %}</td>
+          <td>{% if p.rtt_ms is not none %}{{ '%.1f'|format(p.rtt_ms) }}ms{% else %}-{% endif %}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p class="empty">No open ports.</p>
+    {% endif %}
+
+    {% if h.vulnerabilities %}
+    <h3>Vulnerabilities</h3>
+    <table>
+      <thead>
+        <tr><th>CVE ID</th><th>Severity</th><th>CVSS</th><th>Matched On</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        {% for v in h.vulnerabilities %}
+        <tr>
+          <td style="white-space:nowrap;">{{ v.cve_id }}</td>
+          <td><span class="tag tag-{{ v.severity }}">{{ v.severity }}</span></td>
+          <td>{{ v.cvss_score if v.cvss_score is not none else '-' }}</td>
+          <td style="font-size:0.78rem;">{{ v.matched_on.vendor }}/{{ v.matched_on.product }} {{ v.matched_on.version or '' }}</td>
+          <td style="font-size:0.8rem;max-width:400px;">{{ v.description[:250] }}{% if v.description|length > 250 %}&hellip;{% endif %}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endif %}
+  </div>
+</details>
+{% endfor %}
+
+<footer>
+  <p>Generated by Sentinel Scanner &mdash; light-weight network vulnerability scanner</p>
+</footer>
+
+</body>
+</html>
