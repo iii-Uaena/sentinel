@@ -1,0 +1,22 @@
+vendor,product,version_range,cve_id,severity,cvss_score,description,references
+# ====== CSV 列说明 ======
+# vendor        — 厂商名（如 apache、openbsd、microsoft），必须
+# product       — 产品名（如 httpd、openssh、iis），必须
+# version_range — 版本范围（如 <=2.4.48、>=1.0,<=2.0、*），空表示全版本
+# cve_id        — CVE 编号（如 CVE-2024-6387），必须
+# severity      — 严重等级：CRITICAL、HIGH、MEDIUM、LOW、UNKNOWN
+# cvss_score    — CVSS 评分（如 8.1）
+# description   — 漏洞描述（中文或英文）
+# references    — 参考链接，多个用空格或分号分隔
+#
+# 用法：将此模板复制到 custom/ 目录，按需编辑后保存。cve_matcher 启动时自动加载。
+# 支持的列名别名（不区分大小写）：
+#   vendor → Vendor, VENDOR
+#   product → Product, PRODUCT
+#   version_range → VersionRange, version, affected_version
+#   cve_id → CVE, CVE-ID, id, name
+#   severity → Severity, risk, level
+#   cvss_score → CVSS, cvss, score
+#   description → Description, summary, title, desc
+#   references → References, reference, url, link
+# ==========================

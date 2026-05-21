@@ -1,0 +1,206 @@
+{
+  "cves": [
+    {"id":"CVE-2024-6387","severity":"HIGH","cvss_score":8.1,"vendor":"openbsd","product":"openssh","version_range":">=8.5p1,<=9.3p2","description":"regreSSHion — SSH信号处理竞争条件导致未认证RCE，10,000次尝试可绕过ASLR。","references":["https://nvd.nist.gov/vuln/detail/CVE-2024-6387"]},
+    {"id":"CVE-2023-38408","severity":"CRITICAL","cvss_score":9.8,"vendor":"openbsd","product":"openssh","version_range":"<=9.3p1","description":"OpenSSH PKCS#11未认证RCE，攻击者构造特制智能卡库触发。","references":["https://nvd.nist.gov/vuln/detail/CVE-2023-38408"]},
+    {"id":"CVE-2018-15473","severity":"MEDIUM","cvss_score":5.3,"vendor":"openbsd","product":"openssh","version_range":"<=7.7","description":"OpenSSH用户名枚举，根据响应时间差异枚举有效用户。","references":["https://nvd.nist.gov/vuln/detail/CVE-2018-15473"]},
+    {"id":"CVE-2016-10012","severity":"HIGH","cvss_score":7.8,"vendor":"openbsd","product":"openssh","version_range":"<=7.3","description":"OpenSSH沙箱绕过，共享内存布局可预测导致root RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2016-10012"]},
+
+    {"id":"CVE-2024-38475","severity":"CRITICAL","cvss_score":9.8,"vendor":"apache","product":"httpd","version_range":"<=2.4.59","description":"Apache HTTP Server mod_rewrite输出转义缺陷→代码执行（CISA KEV）。","references":["https://nvd.nist.gov/vuln/detail/CVE-2024-38475"]},
+    {"id":"CVE-2023-25690","severity":"CRITICAL","cvss_score":9.8,"vendor":"apache","product":"httpd","version_range":"<=2.4.55","description":"Apache mod_proxy HTTP请求走私，未认证攻击者访问内网资源。","references":["https://nvd.nist.gov/vuln/detail/CVE-2023-25690"]},
+    {"id":"CVE-2023-31122","severity":"HIGH","cvss_score":7.5,"vendor":"apache","product":"httpd","version_range":"<=2.4.56","description":"Apache mod_macro缓冲区溢出→RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2023-31122"]},
+    {"id":"CVE-2023-45802","severity":"HIGH","cvss_score":7.5,"vendor":"apache","product":"httpd","version_range":"<=2.4.57","description":"Apache HTTP/2连接耗尽导致拒绝服务。","references":["https://nvd.nist.gov/vuln/detail/CVE-2023-45802"]},
+    {"id":"CVE-2022-37436","severity":"HIGH","cvss_score":7.5,"vendor":"apache","product":"httpd","version_range":"<=2.4.54","description":"Apache mod_proxy后端重定向导致请求走私。","references":["https://nvd.nist.gov/vuln/detail/CVE-2022-37436"]},
+    {"id":"CVE-2022-23943","severity":"HIGH","cvss_score":7.5,"vendor":"apache","product":"httpd","version_range":">=2.4.51,<=2.4.52","description":"Apache mod_sed内存破坏导致拒绝服务。","references":["https://nvd.nist.gov/vuln/detail/CVE-2022-23943"]},
+    {"id":"CVE-2022-22720","severity":"CRITICAL","cvss_score":9.8,"vendor":"apache","product":"httpd","version_range":"<=2.4.52","description":"Apache HTTP请求走私，HTTP请求边界处理不当。","references":["https://nvd.nist.gov/vuln/detail/CVE-2022-22720"]},
+    {"id":"CVE-2021-44790","severity":"CRITICAL","cvss_score":9.8,"vendor":"apache","product":"httpd","version_range":"<=2.4.51","description":"Apache mod_lua缓冲区溢出→RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2021-44790"]},
+    {"id":"CVE-2021-41773","severity":"CRITICAL","cvss_score":9.8,"vendor":"apache","product":"httpd","version_range":">=2.4.49,<=2.4.50","description":"Apache HTTP Server路径穿越→RCE，已在野利用。","references":["https://nvd.nist.gov/vuln/detail/CVE-2021-41773"]},
+    {"id":"CVE-2021-40438","severity":"CRITICAL","cvss_score":9.8,"vendor":"apache","product":"httpd","version_range":"<=2.4.48","description":"Apache mod_proxy SSRF→内网攻击。","references":["https://nvd.nist.gov/vuln/detail/CVE-2021-40438"]},
+    {"id":"CVE-2021-39275","severity":"CRITICAL","cvss_score":9.8,"vendor":"apache","product":"httpd","version_range":"<=2.4.48","description":"Apache ap_escape_quotes堆溢出→未认证RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2021-39275"]},
+    {"id":"CVE-2019-0211","severity":"HIGH","cvss_score":7.8,"vendor":"apache","product":"httpd","version_range":">=2.4.17,<=2.4.38","description":"Apache子进程权限提升→root。","references":["https://nvd.nist.gov/vuln/detail/CVE-2019-0211"]},
+    {"id":"CVE-2017-9798","severity":"HIGH","cvss_score":7.5,"vendor":"apache","product":"httpd","version_range":"<=2.4.27","description":"Apache Optionsbleed—OPTIONS方法内存泄露。","references":["https://nvd.nist.gov/vuln/detail/CVE-2017-9798"]},
+    {"id":"CVE-2024-27316","severity":"HIGH","cvss_score":7.5,"vendor":"apache","product":"httpd","version_range":"<=2.4.58","description":"Apache HTTP/2连接重置无限循环→DoS。","references":["https://nvd.nist.gov/vuln/detail/CVE-2024-27316"]},
+
+    {"id":"CVE-2025-24813","severity":"CRITICAL","cvss_score":9.8,"vendor":"apache","product":"tomcat","version_range":">=9.0.0,<=9.0.98","description":"Tomcat Path Equivalence Partial PUT→RCE（CISA KEV，EPSS 94%）。","references":["https://nvd.nist.gov/vuln/detail/CVE-2025-24813"]},
+    {"id":"CVE-2024-56337","severity":"CRITICAL","cvss_score":9.8,"vendor":"apache","product":"tomcat","version_range":">=9.0.0,<=9.0.98","description":"Tomcat CVE-2024-50379补丁绕过（EPSS 94%，已在野利用）。","references":["https://nvd.nist.gov/vuln/detail/CVE-2024-56337"]},
+    {"id":"CVE-2024-50379","severity":"CRITICAL","cvss_score":9.8,"vendor":"apache","product":"tomcat","version_range":">=9.0.0,<=9.0.97","description":"Tomcat TOCTOU竞态→DefaultServlet写入RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2024-50379"]},
+    {"id":"CVE-2020-1938","severity":"CRITICAL","cvss_score":9.8,"vendor":"apache","product":"tomcat","version_range":">=6.0.0,<=9.0.30","description":"Ghostcat—Tomcat AJP文件包含→RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2020-1938"]},
+    {"id":"CVE-2019-0232","severity":"HIGH","cvss_score":8.1,"vendor":"apache","product":"tomcat","version_range":">=7.0.0,<=9.0.14","description":"Tomcat CGI Servlet命令行注入RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2019-0232"]},
+    {"id":"CVE-2025-55752","severity":"CRITICAL","cvss_score":9.0,"vendor":"apache","product":"tomcat","version_range":">=9.0.0,<=9.0.108","description":"Tomcat Rewrite Valve目录穿越→RCE，PUT开启时绕过/WEB-INF。","references":["https://nvd.nist.gov/vuln/detail/CVE-2025-55752"]},
+
+    {"id":"CVE-2017-5638","severity":"CRITICAL","cvss_score":10.0,"vendor":"apache","product":"struts","version_range":">=2.3.5,<=2.5.12","description":"Apache Struts2 Jakarta Multipart解析器RCE（Equifax泄露根因）。","references":["https://nvd.nist.gov/vuln/detail/CVE-2017-5638"]},
+    {"id":"CVE-2018-11776","severity":"CRITICAL","cvss_score":8.1,"vendor":"apache","product":"struts","version_range":">=2.3,<=2.5.16","description":"Apache Struts2 namespace参数OGNL注入RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2018-11776"]},
+
+    {"id":"CVE-2025-1974","severity":"CRITICAL","cvss_score":9.8,"vendor":"nginx","product":"nginx","version_range":"*","description":"IngressNightmare—K8s Ingress-NGINX未认证RCE，集群接管。","references":["https://nvd.nist.gov/vuln/detail/CVE-2025-1974"]},
+    {"id":"CVE-2023-44487","severity":"HIGH","cvss_score":7.5,"vendor":"nginx","product":"nginx","version_range":"*","description":"HTTP/2 Rapid Reset攻击—大规模DoS。","references":["https://nvd.nist.gov/vuln/detail/CVE-2023-44487"]},
+    {"id":"CVE-2021-23017","severity":"HIGH","cvss_score":7.5,"vendor":"nginx","product":"nginx","version_range":"<=1.20.0","description":"nginx DNS resolver远程代码执行（特定配置）。","references":["https://nvd.nist.gov/vuln/detail/CVE-2021-23017"]},
+    {"id":"CVE-2019-9511","severity":"HIGH","cvss_score":7.5,"vendor":"nginx","product":"nginx","version_range":"<=1.16.1","description":"nginx HTTP/2请求头资源消耗DoS。","references":["https://nvd.nist.gov/vuln/detail/CVE-2019-9511"]},
+    {"id":"CVE-2017-7529","severity":"HIGH","cvss_score":7.5,"vendor":"nginx","product":"nginx","version_range":"<=1.13.2","description":"nginx range filter整数溢出→信息泄露。","references":["https://nvd.nist.gov/vuln/detail/CVE-2017-7529"]},
+    {"id":"CVE-2016-1247","severity":"HIGH","cvss_score":7.8,"vendor":"nginx","product":"nginx","version_range":"<=1.10.1","description":"nginx日志symlink权限提升→root。","references":["https://nvd.nist.gov/vuln/detail/CVE-2016-1247"]},
+
+    {"id":"CVE-2017-7269","severity":"CRITICAL","cvss_score":9.8,"vendor":"microsoft","product":"iis","version_range":">=6.0,<=7.5","description":"IIS 6.0 WebDAV PROPFIND缓冲区溢出RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2017-7269"]},
+    {"id":"CVE-2015-1635","severity":"CRITICAL","cvss_score":10.0,"vendor":"microsoft","product":"iis","version_range":">=7.0,<=10.0","description":"IIS HTTP.sys RCE(MS15-034)—Range头触发。","references":["https://nvd.nist.gov/vuln/detail/CVE-2015-1635"]},
+
+    {"id":"CVE-2021-26855","severity":"CRITICAL","cvss_score":9.8,"vendor":"microsoft","product":"exchange","version_range":"<=15.2.858.15","description":"ProxyLogon—Exchange SSRF+RCE，已大规模利用。","references":["https://nvd.nist.gov/vuln/detail/CVE-2021-26855"]},
+    {"id":"CVE-2021-34473","severity":"CRITICAL","cvss_score":9.8,"vendor":"microsoft","product":"exchange","version_range":"<=15.2.858.12","description":"ProxyShell—Exchange Autodiscover EWS RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2021-34473"]},
+    {"id":"CVE-2021-27065","severity":"HIGH","cvss_score":7.8,"vendor":"microsoft","product":"exchange","version_range":">=15.0.0,<=15.2.858.12","description":"Exchange ECP接口认证后RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2021-27065"]},
+    {"id":"CVE-2022-41082","severity":"HIGH","cvss_score":8.0,"vendor":"microsoft","product":"exchange","version_range":"<=15.2.1118.9","description":"ProxyNotShell—Exchange EWS权限提升RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2022-41082"]},
+    {"id":"CVE-2020-0688","severity":"CRITICAL","cvss_score":8.8,"vendor":"microsoft","product":"exchange","version_range":">=15.0.0,<=15.2.595.3","description":"Exchange固定密钥→SYSTEM权限RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2020-0688"]},
+
+    {"id":"CVE-2016-6662","severity":"CRITICAL","cvss_score":9.0,"vendor":"oracle","product":"mysql","version_range":"<=5.7.15","description":"MySQL LOAD DATA LOCAL权限提升→RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2016-6662"]},
+    {"id":"CVE-2012-2122","severity":"MEDIUM","cvss_score":6.0,"vendor":"oracle","product":"mysql","version_range":"<=5.5.22","description":"MySQL认证绕过—特定编译选项下多次尝试绕过密码。","references":["https://nvd.nist.gov/vuln/detail/CVE-2012-2122"]},
+    {"id":"CVE-2021-2022","severity":"HIGH","cvss_score":7.5,"vendor":"oracle","product":"mysql","version_range":"<=8.0.20","description":"MySQL组复制插件未认证DoS。","references":["https://nvd.nist.gov/vuln/detail/CVE-2021-2022"]},
+    {"id":"CVE-2023-21980","severity":"HIGH","cvss_score":7.5,"vendor":"oracle","product":"mysql","version_range":">=8.0.0,<=8.0.32","description":"MySQL Server未认证DoS—通过协议漏洞触发。","references":["https://nvd.nist.gov/vuln/detail/CVE-2023-21980"]},
+    {"id":"CVE-2021-27928","severity":"CRITICAL","cvss_score":9.8,"vendor":"mariadb","product":"mariadb","version_range":">=10.2.0,<=10.5.8","description":"MariaDB wsrep_provider认证绕过+OS命令注入→RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2021-27928"]},
+    {"id":"CVE-2022-38791","severity":"HIGH","cvss_score":7.5,"vendor":"mariadb","product":"mariadb","version_range":"<=10.9.1","description":"MariaDB特制SQL语句服务崩溃DoS。","references":["https://nvd.nist.gov/vuln/detail/CVE-2022-38791"]},
+
+    {"id":"CVE-2018-1058","severity":"HIGH","cvss_score":8.8,"vendor":"postgresql","product":"postgresql","version_range":">=9.3,<=10.1","description":"PostgreSQL search_path不安全→普通用户提权为超级用户。","references":["https://nvd.nist.gov/vuln/detail/CVE-2018-1058"]},
+    {"id":"CVE-2021-32027","severity":"HIGH","cvss_score":8.8,"vendor":"postgresql","product":"postgresql","version_range":">=9.6,<=13.3","description":"PostgreSQL数组索引内存泄露→敏感信息泄露。","references":["https://nvd.nist.gov/vuln/detail/CVE-2021-32027"]},
+    {"id":"CVE-2019-9193","severity":"HIGH","cvss_score":7.2,"vendor":"postgresql","product":"postgresql","version_range":">=9.3,<=11.2","description":"PostgreSQL COPY PROGRAM→超级用户执行系统命令。","references":["https://nvd.nist.gov/vuln/detail/CVE-2019-9193"]},
+    {"id":"CVE-2024-10976","severity":"MEDIUM","cvss_score":4.2,"vendor":"postgresql","product":"postgresql","version_range":">=12.0,<=16.4","description":"PostgreSQL行级安全策略绕过→未授权数据访问。","references":["https://nvd.nist.gov/vuln/detail/CVE-2024-10976"]},
+    {"id":"CVE-2022-1552","severity":"HIGH","cvss_score":8.8,"vendor":"postgresql","product":"postgresql","version_range":">=10.0,<=14.3","description":"PostgreSQL权限提升—安全定义器函数可被越权调用。","references":["https://nvd.nist.gov/vuln/detail/CVE-2022-1552"]},
+
+    {"id":"CVE-2022-0543","severity":"CRITICAL","cvss_score":10.0,"vendor":"redis","product":"redis","version_range":"*","description":"Redis Lua沙箱逃逸(Debian/Ubuntu)→RCE（CISA KEV）。","references":["https://nvd.nist.gov/vuln/detail/CVE-2022-0543"]},
+    {"id":"CVE-2022-24735","severity":"HIGH","cvss_score":7.2,"vendor":"redis","product":"redis","version_range":"<=7.0.0","description":"Redis ACL规则缺陷→代码注入。","references":["https://nvd.nist.gov/vuln/detail/CVE-2022-24735"]},
+    {"id":"CVE-2023-45145","severity":"HIGH","cvss_score":7.5,"vendor":"redis","product":"redis","version_range":">=7.0.0,<=7.2.1","description":"Redis Unix socket权限设置竞态→权限提升。","references":["https://nvd.nist.gov/vuln/detail/CVE-2023-45145"]},
+    {"id":"CVE-2023-28425","severity":"MEDIUM","cvss_score":5.5,"vendor":"redis","product":"redis","version_range":">=7.0.0,<=7.0.9","description":"Redis MSETNX死循环DoS。","references":["https://nvd.nist.gov/vuln/detail/CVE-2023-28425"]},
+
+    {"id":"CVE-2025-14847","severity":"HIGH","cvss_score":7.5,"vendor":"mongodb","product":"mongodb","version_range":">=4.4.0,<=8.2.2","description":"MongoBleed—未认证zlib堆内存泄露（凭据/Token）（CISA KEV）。","references":["https://nvd.nist.gov/vuln/detail/CVE-2025-14847"]},
+
+    {"id":"CVE-2019-10149","severity":"CRITICAL","cvss_score":9.8,"vendor":"exim","product":"exim","version_range":">=4.87,<=4.91","description":"Return of the WIZard—Exim未认证EHLO命令RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2019-10149"]},
+    {"id":"CVE-2023-42115","severity":"CRITICAL","cvss_score":9.8,"vendor":"exim","product":"exim","version_range":"<=4.96.1","description":"Exim AUTH越界写入→未认证RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2023-42115"]},
+    {"id":"CVE-2023-42117","severity":"HIGH","cvss_score":8.1,"vendor":"exim","product":"exim","version_range":"<=4.96.1","description":"Exim SMTP协议缺陷→RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2023-42117"]},
+    {"id":"CVE-2020-28018","severity":"CRITICAL","cvss_score":9.8,"vendor":"exim","product":"exim","version_range":"<=4.94","description":"Exim use-after-free→RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2020-28018"]},
+
+    {"id":"CVE-2019-12815","severity":"CRITICAL","cvss_score":9.8,"vendor":"proftpd","product":"proftpd","version_range":">=1.3.0,<=1.3.6b","description":"ProFTPD mod_copy未授权文件复制→任意文件读写。","references":["https://nvd.nist.gov/vuln/detail/CVE-2019-12815"]},
+    {"id":"CVE-2020-9273","severity":"CRITICAL","cvss_score":9.8,"vendor":"proftpd","product":"proftpd","version_range":"<=1.3.7","description":"ProFTPD use-after-free→RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2020-9273"]},
+    {"id":"CVE-2015-3306","severity":"CRITICAL","cvss_score":10.0,"vendor":"proftpd","product":"proftpd","version_range":">=1.3.0,<=1.3.5","description":"ProFTPD mod_copy未授权文件访问→任意文件读写。","references":["https://nvd.nist.gov/vuln/detail/CVE-2015-3306"]},
+
+    {"id":"CVE-2019-11043","severity":"CRITICAL","cvss_score":9.8,"vendor":"php","product":"php","version_range":">=7.1,<=7.3.10","description":"PHP-FPM fastcgi参数注入RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2019-11043"]},
+    {"id":"CVE-2024-4577","severity":"CRITICAL","cvss_score":9.8,"vendor":"php","product":"php","version_range":">=8.0,<=8.3.7","description":"PHP CGI参数注入RCE(Windows)，已在野利用。","references":["https://nvd.nist.gov/vuln/detail/CVE-2024-4577"]},
+
+    {"id":"CVE-2020-14644","severity":"CRITICAL","cvss_score":9.8,"vendor":"oracle","product":"weblogic","version_range":">=12.2.1.3.0,<=14.1.1.0.0","description":"WebLogic T3/IIOP反序列化→未认证RCE（CISA KEV）。","references":["https://nvd.nist.gov/vuln/detail/CVE-2020-14644"]},
+    {"id":"CVE-2020-2551","severity":"CRITICAL","cvss_score":9.8,"vendor":"oracle","product":"weblogic","version_range":"<=12.2.1.4.0","description":"WebLogic IIOP协议未认证RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2020-2551"]},
+    {"id":"CVE-2023-21839","severity":"CRITICAL","cvss_score":9.8,"vendor":"oracle","product":"weblogic","version_range":">=12.2.1.3.0,<=14.1.1.0.0","description":"WebLogic T3/IIOP未认证RCE（CISA KEV）。","references":["https://nvd.nist.gov/vuln/detail/CVE-2023-21839"]},
+    {"id":"CVE-2017-3506","severity":"CRITICAL","cvss_score":9.8,"vendor":"oracle","product":"weblogic","version_range":"<=12.2.1.2.0","description":"WebLogic WLS组件XML注入→OS命令执行RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2017-3506"]},
+    {"id":"CVE-2018-2628","severity":"CRITICAL","cvss_score":9.8,"vendor":"oracle","product":"weblogic","version_range":"<=12.2.1.3.0","description":"WebLogic T3协议反序列化RCE（已被大规模利用）。","references":["https://nvd.nist.gov/vuln/detail/CVE-2018-2628"]},
+
+    {"id":"CVE-2024-23897","severity":"CRITICAL","cvss_score":9.8,"vendor":"jenkins","product":"jenkins","version_range":"<=2.441","description":"Jenkins CLI路径穿越→未认证RCE（勒索软件利用）（CISA KEV）。","references":["https://nvd.nist.gov/vuln/detail/CVE-2024-23897"]},
+    {"id":"CVE-2019-1003029","severity":"CRITICAL","cvss_score":9.8,"vendor":"jenkins","product":"jenkins","version_range":"<=2.164.1","description":"Jenkins Script Security沙箱绕过→RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2019-1003029"]},
+    {"id":"CVE-2019-1003030","severity":"CRITICAL","cvss_score":9.8,"vendor":"jenkins","product":"jenkins","version_range":"<=2.164.1","description":"Jenkins Matrix Project沙箱绕过→RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2019-1003030"]},
+    {"id":"CVE-2018-1000861","severity":"CRITICAL","cvss_score":9.8,"vendor":"jenkins","product":"jenkins","version_range":"<=2.138.3","description":"Jenkins Stapler Web框架反序列化RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2018-1000861"]},
+    {"id":"CVE-2021-21690","severity":"CRITICAL","cvss_score":9.8,"vendor":"jenkins","product":"jenkins","version_range":"<=2.289","description":"Jenkins代理→控制器文件路径绕过RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2021-21690"]},
+
+    {"id":"CVE-2021-22205","severity":"CRITICAL","cvss_score":10.0,"vendor":"gitlab","product":"gitlab","version_range":">=11.9.0,<=13.10.0","description":"GitLab未认证ExifTool命令注入RCE（CISA KEV，30000+实例受影响）。","references":["https://nvd.nist.gov/vuln/detail/CVE-2021-22205"]},
+    {"id":"CVE-2023-7028","severity":"CRITICAL","cvss_score":9.8,"vendor":"gitlab","product":"gitlab","version_range":">=16.1.0,<=16.7.0","description":"GitLab密码重置→未验证邮箱接收→账号接管（CISA KEV）。","references":["https://nvd.nist.gov/vuln/detail/CVE-2023-7028"]},
+    {"id":"CVE-2022-2884","severity":"CRITICAL","cvss_score":9.9,"vendor":"gitlab","product":"gitlab","version_range":">=11.3.4,<=15.1.1","description":"GitLab GitHub Import API Redis命令注入RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2022-2884"]},
+    {"id":"CVE-2022-2185","severity":"CRITICAL","cvss_score":9.9,"vendor":"gitlab","product":"gitlab","version_range":">=14.0.0,<=15.0.0","description":"GitLab认证后远程代码执行。","references":["https://nvd.nist.gov/vuln/detail/CVE-2022-2185"]},
+
+    {"id":"CVE-2023-46604","severity":"CRITICAL","cvss_score":10.0,"vendor":"apache","product":"activemq","version_range":">=5.15.0,<5.18.3","description":"ActiveMQ OpenWire反序列化RCE（勒索软件/挖矿利用，EPSS 94%）（CISA KEV）。","references":["https://nvd.nist.gov/vuln/detail/CVE-2023-46604"]},
+    {"id":"CVE-2022-41678","severity":"CRITICAL","cvss_score":9.8,"vendor":"apache","product":"activemq","version_range":">=5.15.0,<5.16.7","description":"ActiveMQ Jolokia反序列化RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2022-41678"]},
+
+    {"id":"CVE-2024-3400","severity":"CRITICAL","cvss_score":10.0,"vendor":"paloalto","product":"panos","version_range":">=10.2.0,<=11.1.0","description":"PAN-OS GlobalProtect命令注入→未认证RCE（已在野利用）。","references":["https://nvd.nist.gov/vuln/detail/CVE-2024-3400"]},
+
+    {"id":"CVE-2023-20198","severity":"CRITICAL","cvss_score":10.0,"vendor":"cisco","product":"ios_xe","version_range":">=16.9,<=17.9.4","description":"Cisco IOS XE Web UI权限提升→植入后门持久化。","references":["https://nvd.nist.gov/vuln/detail/CVE-2023-20198"]},
+    {"id":"CVE-2020-3452","severity":"HIGH","cvss_score":7.5,"vendor":"cisco","product":"asa","version_range":"<=9.14.1","description":"Cisco ASA/FTD Web服务任意文件读取。","references":["https://nvd.nist.gov/vuln/detail/CVE-2020-3452"]},
+    {"id":"CVE-2023-20269","severity":"CRITICAL","cvss_score":9.1,"vendor":"cisco","product":"asa","version_range":">=9.8,<=9.18.3","description":"Cisco ASA VPN暴力破解+RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2023-20269"]},
+    {"id":"CVE-2025-20333","severity":"CRITICAL","cvss_score":9.9,"vendor":"cisco","product":"asa","version_range":">=9.8,<=9.20.0","description":"Cisco ASA/FTD VPN Web Server缓冲区溢出→root RCE(ArcaneDoor,CISA KEV+ED)。","references":["https://nvd.nist.gov/vuln/detail/CVE-2025-20333"]},
+
+    {"id":"CVE-2024-37079","severity":"CRITICAL","cvss_score":9.8,"vendor":"vmware","product":"vcenter","version_range":">=7.0,<=8.0.2","description":"VMware vCenter DCE/RPC堆溢出→未认证RCE（CISA KEV）。","references":["https://nvd.nist.gov/vuln/detail/CVE-2024-37079"]},
+    {"id":"CVE-2024-38812","severity":"CRITICAL","cvss_score":9.8,"vendor":"vmware","product":"vcenter","version_range":">=7.0,<=8.0.2","description":"VMware vCenter DCE/RPC堆溢出→RCE（CISA KEV）。","references":["https://nvd.nist.gov/vuln/detail/CVE-2024-38812"]},
+    {"id":"CVE-2023-34048","severity":"CRITICAL","cvss_score":9.8,"vendor":"vmware","product":"vcenter","version_range":">=7.0,<=8.0.1","description":"VMware vCenter DCERPC越界写→RCE（中国APT利用）。","references":["https://nvd.nist.gov/vuln/detail/CVE-2023-34048"]},
+    {"id":"CVE-2021-21972","severity":"CRITICAL","cvss_score":9.8,"vendor":"vmware","product":"vcenter","version_range":">=6.5,<=7.0.1","description":"VMware vCenter未认证文件上传→RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2021-21972"]},
+
+    {"id":"CVE-2019-11510","severity":"CRITICAL","cvss_score":10.0,"vendor":"pulsesecure","product":"pulse_connect_secure","version_range":"<=9.0R3.3","description":"Pulse Connect Secure未授权任意文件读取→/etc/shadow泄露。","references":["https://nvd.nist.gov/vuln/detail/CVE-2019-11510"]},
+
+    {"id":"CVE-2023-46805","severity":"HIGH","cvss_score":8.2,"vendor":"ivanti","product":"connect_secure","version_range":"<=22.6R2","description":"Ivanti Connect Secure认证绕过。","references":["https://nvd.nist.gov/vuln/detail/CVE-2023-46805"]},
+    {"id":"CVE-2024-21887","severity":"CRITICAL","cvss_score":9.1,"vendor":"ivanti","product":"connect_secure","version_range":"<=22.6R2","description":"Ivanti Connect Secure命令注入RCE（已在野利用）（CISA KEV）。","references":["https://nvd.nist.gov/vuln/detail/CVE-2024-21887"]},
+    {"id":"CVE-2025-0282","severity":"CRITICAL","cvss_score":9.0,"vendor":"ivanti","product":"connect_secure","version_range":"<=22.7R1","description":"Ivanti Connect Secure栈溢出→未认证RCE(RESURGE恶意软件,CISA KEV)。","references":["https://nvd.nist.gov/vuln/detail/CVE-2025-0282"]},
+
+    {"id":"CVE-2018-13379","severity":"CRITICAL","cvss_score":9.8,"vendor":"fortinet","product":"fortios","version_range":"<=6.0.4","description":"FortiOS SSL VPN任意文件读取→明文凭据泄露。","references":["https://nvd.nist.gov/vuln/detail/CVE-2018-13379"]},
+    {"id":"CVE-2022-42475","severity":"CRITICAL","cvss_score":9.8,"vendor":"fortinet","product":"fortios","version_range":">=7.0.0,<=7.2.2","description":"FortiOS SSL VPN堆溢出→RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2022-42475"]},
+
+    {"id":"CVE-2025-6543","severity":"CRITICAL","cvss_score":9.8,"vendor":"citrix","product":"netscaler","version_range":">=13.0,<=14.1.0","description":"Citrix NetScaler ADC/Gateway内存溢出→未认证RCE（零日2月,CISA KEV）。","references":["https://nvd.nist.gov/vuln/detail/CVE-2025-6543"]},
+    {"id":"CVE-2025-5777","severity":"CRITICAL","cvss_score":9.3,"vendor":"citrix","product":"netscaler","version_range":">=13.0,<=14.1.0","description":"CitrixBleed 2—NetScaler内存泄露→会话劫持RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2025-5777"]},
+    {"id":"CVE-2023-3519","severity":"CRITICAL","cvss_score":9.8,"vendor":"citrix","product":"netscaler","version_range":">=13.0,<=13.1.0","description":"Citrix NetScaler未认证代码注入RCE（勒索软件利用）（CISA KEV）。","references":["https://nvd.nist.gov/vuln/detail/CVE-2023-3519"]},
+    {"id":"CVE-2023-4966","severity":"HIGH","cvss_score":9.4,"vendor":"citrix","product":"netscaler","version_range":">=13.0,<=14.1.0","description":"CitrixBleed—NetScaler缓冲区溢出→敏感信息泄露（勒索软件利用）。","references":["https://nvd.nist.gov/vuln/detail/CVE-2023-4966"]},
+
+    {"id":"CVE-2021-22986","severity":"CRITICAL","cvss_score":9.8,"vendor":"f5","product":"bigip","version_range":">=11.6,<=16.0.1.1","description":"F5 BIG-IP iControl REST API未认证RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2021-22986"]},
+    {"id":"CVE-2022-1388","severity":"CRITICAL","cvss_score":9.8,"vendor":"f5","product":"bigip","version_range":">=11.6,<=16.1.2","description":"F5 BIG-IP iControl认证绕过→RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2022-1388"]},
+    {"id":"CVE-2020-5902","severity":"CRITICAL","cvss_score":9.8,"vendor":"f5","product":"bigip","version_range":">=11.6,<=15.1.1","description":"F5 BIG-IP TMUI未认证HTTP接口→系统命令执行。","references":["https://nvd.nist.gov/vuln/detail/CVE-2020-5902"]},
+
+    {"id":"CVE-2020-1472","severity":"CRITICAL","cvss_score":10.0,"vendor":"microsoft","product":"active_directory","version_range":"*","description":"Zerologon—Netlogon协议提权→域管理员。","references":["https://nvd.nist.gov/vuln/detail/CVE-2020-1472"]},
+    {"id":"CVE-2021-36942","severity":"CRITICAL","cvss_score":9.8,"vendor":"microsoft","product":"exchange","version_range":"<=15.2.858.12","description":"PetitPotam—NTLM中继攻击→域控制器接管。","references":["https://nvd.nist.gov/vuln/detail/CVE-2021-36942"]},
+    {"id":"CVE-2020-1595","severity":"CRITICAL","cvss_score":9.9,"vendor":"microsoft","product":"sharepoint","version_range":">=16.0.0,<=16.0.10354.20001","description":"SharePoint未安全API→RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2020-1595"]},
+
+    {"id":"CVE-2022-26134","severity":"CRITICAL","cvss_score":9.8,"vendor":"atlassian","product":"confluence","version_range":">=1.3.0,<=7.18.0","description":"Confluence OGNL注入→未认证RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2022-26134"]},
+    {"id":"CVE-2023-22527","severity":"CRITICAL","cvss_score":10.0,"vendor":"atlassian","product":"confluence","version_range":">=7.19.0,<=8.5.0","description":"Confluence OGNL模板注入→未认证RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2023-22527"]},
+    {"id":"CVE-2021-26084","severity":"CRITICAL","cvss_score":9.8,"vendor":"atlassian","product":"confluence","version_range":">=4.0.0,<=7.13.0","description":"Confluence Webwork OGNL注入→未认证RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2021-26084"]},
+    {"id":"CVE-2023-22515","severity":"CRITICAL","cvss_score":9.8,"vendor":"atlassian","product":"confluence","version_range":">=7.19.0,<=8.3.0","description":"Confluence访问控制破坏→创建管理员账号。","references":["https://nvd.nist.gov/vuln/detail/CVE-2023-22515"]},
+
+    {"id":"CVE-2019-6340","severity":"HIGH","cvss_score":8.1,"vendor":"drupal","product":"drupal","version_range":"<8.6.10","description":"Drupal核心REST模块反序列化RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2019-6340"]},
+    {"id":"CVE-2018-7600","severity":"CRITICAL","cvss_score":9.8,"vendor":"drupal","product":"drupal","version_range":">=7.0,<=8.5.0","description":"Drupalgeddon2—Drupal表单API未认证RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2018-7600"]},
+
+    {"id":"CVE-2021-40539","severity":"CRITICAL","cvss_score":9.8,"vendor":"zohocorp","product":"manageengine","version_range":"*","description":"ManageEngine ADSelfService Plus REST API认证绕过RCE（已在野利用）。","references":["https://nvd.nist.gov/vuln/detail/CVE-2021-40539"]},
+    {"id":"CVE-2021-37415","severity":"CRITICAL","cvss_score":9.8,"vendor":"zohocorp","product":"servicedesk","version_range":"*","description":"ManageEngine ServiceDesk Plus未认证文件上传RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2021-37415"]},
+
+    {"id":"CVE-2023-5952","severity":"CRITICAL","cvss_score":9.8,"vendor":"wordpress","product":"wordpress","version_range":"<=2.9.5","description":"WordPress Welcart e-Commerce插件PHP对象注入→未认证RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2023-5952"]},
+    {"id":"CVE-2023-5762","severity":"HIGH","cvss_score":8.8,"vendor":"wordpress","product":"wordpress","version_range":"<=1.2.3.6","description":"WordPress Filr插件OS命令注入→RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2023-5762"]},
+
+    {"id":"CVE-2021-27860","severity":"HIGH","cvss_score":7.8,"vendor":"fatpipe","product":"mpvpn","version_range":"*","description":"FatPipe MPVPN未认证文件上传RCE→webshell。","references":["https://nvd.nist.gov/vuln/detail/CVE-2021-27860"]},
+    {"id":"CVE-2019-16097","severity":"CRITICAL","cvss_score":9.8,"vendor":"goharbor","product":"harbor","version_range":">=1.7.0,<=1.8.3","description":"Harbor容器仓库API权限提升→管理员。","references":["https://nvd.nist.gov/vuln/detail/CVE-2019-16097"]},
+
+    {"id":"CVE-2019-2725","severity":"CRITICAL","cvss_score":9.8,"vendor":"oracle","product":"weblogic","version_range":">=10.3.6.0,<=12.2.1.3.0","description":"WebLogic wls9_async反序列化RCE（零日）。","references":["https://nvd.nist.gov/vuln/detail/CVE-2019-2725"]},
+    {"id":"CVE-2020-14882","severity":"CRITICAL","cvss_score":9.8,"vendor":"oracle","product":"weblogic","version_range":">=10.3.6.0,<=14.1.1.0.0","description":"WebLogic Console远程代码执行→未认证RCE（已大规模利用）。","references":["https://nvd.nist.gov/vuln/detail/CVE-2020-14882"]},
+
+    {"id":"CVE-2020-0796","severity":"CRITICAL","cvss_score":10.0,"vendor":"microsoft","product":"windows","version_range":"*","description":"SMBGhost—Windows SMBv3远程代码执行。","references":["https://nvd.nist.gov/vuln/detail/CVE-2020-0796"]},
+    {"id":"CVE-2019-0708","severity":"CRITICAL","cvss_score":9.8,"vendor":"microsoft","product":"windows","version_range":"*","description":"BlueKeep—Windows RDP远程代码执行（蠕虫级）。","references":["https://nvd.nist.gov/vuln/detail/CVE-2019-0708"]},
+    {"id":"CVE-2017-0144","severity":"CRITICAL","cvss_score":9.3,"vendor":"microsoft","product":"windows","version_range":"*","description":"EternalBlue—Windows SMBv1远程代码执行（WannaCry/NotPetya）。","references":["https://nvd.nist.gov/vuln/detail/CVE-2017-0144"]},
+    {"id":"CVE-2021-34527","severity":"CRITICAL","cvss_score":8.8,"vendor":"microsoft","product":"windows","version_range":"*","description":"PrintNightmare—Windows Print Spooler RCE→SYSTEM。","references":["https://nvd.nist.gov/vuln/detail/CVE-2021-34527"]},
+    {"id":"CVE-2022-30190","severity":"HIGH","cvss_score":7.8,"vendor":"microsoft","product":"windows","version_range":"*","description":"Follina—MSDT远程代码执行（Office文档触发）。","references":["https://nvd.nist.gov/vuln/detail/CVE-2022-30190"]},
+
+    {"id":"CVE-2014-0160","severity":"HIGH","cvss_score":7.5,"vendor":"openssl","product":"openssl","version_range":">=1.0.1,<=1.0.1f","description":"Heartbleed—OpenSSL心跳扩展信息泄露。","references":["https://nvd.nist.gov/vuln/detail/CVE-2014-0160"]},
+
+    {"id":"CVE-2023-22518","severity":"CRITICAL","cvss_score":9.8,"vendor":"atlassian","product":"confluence","version_range":">=7.19.0,<=8.3.0","description":"Confluence未认证访问控制破坏→数据销毁。","references":["https://nvd.nist.gov/vuln/detail/CVE-2023-22518"]},
+
+    {"id":"CVE-2020-2555","severity":"CRITICAL","cvss_score":9.8,"vendor":"oracle","product":"coherence","version_range":">=3.7.1.0,<=12.2.1.4.0","description":"Oracle Coherence T3协议反序列化RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2020-2555"]},
+    {"id":"CVE-2021-26085","severity":"MEDIUM","cvss_score":5.3,"vendor":"atlassian","product":"confluence","version_range":"<=7.12.0","description":"Confluence敏感信息泄露→配置信息可读取。","references":["https://nvd.nist.gov/vuln/detail/CVE-2021-26085"]},
+
+
+    {"id":"CVE-2023-20273","severity":"CRITICAL","cvss_score":9.8,"vendor":"cisco","product":"ios_xe","version_range":">=17.9,<=17.9.4","description":"Cisco IOS XE Web UI命令注入→root RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2023-20273"]},
+    {"id":"CVE-2024-20353","severity":"CRITICAL","cvss_score":8.6,"vendor":"cisco","product":"asa","version_range":">=9.8,<=9.20.0","description":"Cisco ASA/FTD Web VPN服务RCE→根权限。","references":["https://nvd.nist.gov/vuln/detail/CVE-2024-20353"]},
+    {"id":"CVE-2023-34362","severity":"CRITICAL","cvss_score":9.8,"vendor":"progress","product":"mft","version_range":"<=15.0.0","description":"MOVEit Transfer SQL注入→RCE（CL0P勒索软件）。","references":["https://nvd.nist.gov/vuln/detail/CVE-2023-34362"]},
+    {"id":"CVE-2021-27101","severity":"CRITICAL","cvss_score":9.8,"vendor":"accellion","product":"fta","version_range":"<=9.12.370","description":"Accellion FTA SQL注入+OS命令注入→RCE（CL0P勒索软件）。","references":["https://nvd.nist.gov/vuln/detail/CVE-2021-27101"]},
+    {"id":"CVE-2023-0669","severity":"CRITICAL","cvss_score":9.8,"vendor":"fortra","product":"goanywhere_mft","version_range":"<=7.1.0","description":"Fortra GoAnywhere MFT未认证RCE（CL0P勒索软件）。","references":["https://nvd.nist.gov/vuln/detail/CVE-2023-0669"]},
+    {"id":"CVE-2022-40684","severity":"CRITICAL","cvss_score":9.8,"vendor":"fortinet","product":"fortios","version_range":">=7.0.0,<=7.2.1","description":"FortiOS/FortiProxy认证绕过→HTTP请求管理接口访问。","references":["https://nvd.nist.gov/vuln/detail/CVE-2022-40684"]},
+    {"id":"CVE-2024-21762","severity":"CRITICAL","cvss_score":9.8,"vendor":"fortinet","product":"fortios","version_range":">=7.0.0,<=7.4.3","description":"FortiOS SSL VPN越界写→未认证RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2024-21762"]},
+    {"id":"CVE-2024-27198","severity":"CRITICAL","cvss_score":9.8,"vendor":"jetbrains","product":"teamcity","version_range":"<=2023.11.3","description":"TeamCity认证绕过→RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2024-27198"]},
+    {"id":"CVE-2023-42793","severity":"CRITICAL","cvss_score":9.8,"vendor":"jetbrains","product":"teamcity","version_range":"<=2023.05.3","description":"TeamCity未认证RCE（APT29利用）。","references":["https://nvd.nist.gov/vuln/detail/CVE-2023-42793"]},
+    {"id":"CVE-2021-44228","severity":"CRITICAL","cvss_score":10.0,"vendor":"apache","product":"log4j","version_range":"<=2.14.1","description":"Log4Shell—Log4j2 JNDI注入→RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2021-44228"]},
+    {"id":"CVE-2022-22965","severity":"CRITICAL","cvss_score":9.8,"vendor":"vmware","product":"spring","version_range":"<=5.3.17","description":"Spring4Shell—Spring Framework数据绑定RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2022-22965"]},
+    {"id":"CVE-2022-36804","severity":"CRITICAL","cvss_score":8.8,"vendor":"atlassian","product":"bitbucket","version_range":">=7.0.0,<=8.3.0","description":"Bitbucket Server命令注入→RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2022-36804"]},
+    {"id":"CVE-2021-42258","severity":"CRITICAL","cvss_score":9.8,"vendor":"billquick","product":"websuite","version_range":"<=22.0.9.1","description":"BillQuick Web Suite SQL注入→RCE（勒索软件利用）。","references":["https://nvd.nist.gov/vuln/detail/CVE-2021-42258"]},
+    {"id":"CVE-2021-35464","severity":"CRITICAL","cvss_score":9.8,"vendor":"forgerock","product":"openam","version_range":"<=6.5.2.2","description":"ForgeRock Access Manager反序列化RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2021-35464"]},
+    {"id":"CVE-2021-35395","severity":"CRITICAL","cvss_score":9.8,"vendor":"dlink","product":"dir","version_range":"*","description":"D-Link DIR系列路由器未认证命令注入RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2021-35395"]},
+    {"id":"CVE-2022-1386","severity":"CRITICAL","cvss_score":8.8,"vendor":"wordpress","product":"wordpress","version_range":"<=5.2.3","description":"WordPress Fusion Builder插件未认证文件上传RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2022-1386"]},
+    {"id":"CVE-2023-50164","severity":"CRITICAL","cvss_score":9.8,"vendor":"apache","product":"struts","version_range":">=2.5.0,<=6.3.0","description":"Apache Struts2文件上传逻辑缺陷→路径穿越RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2023-50164"]},
+    {"id":"CVE-2022-47966","severity":"CRITICAL","cvss_score":9.8,"vendor":"zohocorp","product":"manageengine","version_range":"*","description":"ManageEngine多种产品SAML SSO未认证RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2022-47966"]},
+    {"id":"CVE-2022-23131","severity":"CRITICAL","cvss_score":9.8,"vendor":"zabbix","product":"zabbix","version_range":">=5.4.0,<=5.4.7","description":"Zabbix前端SAML SSO认证绕过→管理员权限。","references":["https://nvd.nist.gov/vuln/detail/CVE-2022-23131"]},
+    {"id":"CVE-2022-22954","severity":"CRITICAL","cvss_score":9.8,"vendor":"vmware","product":"workspace_one","version_range":">=21.0,<=21.5.0","description":"VMware Workspace ONE服务端模板注入→RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2022-22954"]},
+    {"id":"CVE-2024-29973","severity":"CRITICAL","cvss_score":9.8,"vendor":"zyxel","product":"flex","version_range":"<=5.37","description":"Zyxel USG FLEX/WLAN ATP系列命令注入RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2024-29973"]},
+    {"id":"CVE-2021-38647","severity":"CRITICAL","cvss_score":9.8,"vendor":"microsoft","product":"azure","version_range":"*","description":"OMIGOD—Azure Linux OMI未认证RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2021-38647"]},
+    {"id":"CVE-2021-20016","severity":"CRITICAL","cvss_score":9.8,"vendor":"sonicwall","product":"sonicos","version_range":"<=7.0.1.5050","description":"SonicWall SMA100 SQL注入→未认证RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2021-20016"]},
+    {"id":"CVE-2020-5135","severity":"CRITICAL","cvss_score":9.8,"vendor":"sonicwall","product":"sonicos","version_range":"<=9.0.0.4","description":"SonicWall SonicOS VPN Portal栈溢出→未认证RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2020-5135"]},
+    {"id":"CVE-2020-2021","severity":"CRITICAL","cvss_score":10.0,"vendor":"paloalto","product":"panos","version_range":">=7.1,<=8.1.15","description":"PAN-OS SAML认证绕过→管理接口完全访问。","references":["https://nvd.nist.gov/vuln/detail/CVE-2020-2021"]},
+    {"id":"CVE-2022-0185","severity":"CRITICAL","cvss_score":8.4,"vendor":"linux","product":"kernel","version_range":">=5.1,<=5.16.0","description":"Linux内核FS Context堆溢出→容器逃逸RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2022-0185"]},
+    {"id":"CVE-2022-0847","severity":"CRITICAL","cvss_score":7.8,"vendor":"linux","product":"kernel","version_range":">=5.8,<=5.16.10","description":"Dirty Pipe—Linux内核pipe缓冲区覆盖→root提权。","references":["https://nvd.nist.gov/vuln/detail/CVE-2022-0847"]},
+    {"id":"CVE-2016-5195","severity":"CRITICAL","cvss_score":7.8,"vendor":"linux","product":"kernel","version_range":"<4.8.3","description":"Dirty COW—Linux内核竞态条件→root提权。","references":["https://nvd.nist.gov/vuln/detail/CVE-2016-5195"]},
+    {"id":"CVE-2022-27925","severity":"HIGH","cvss_score":7.8,"vendor":"zimbra","product":"zimbra","version_range":">=8.8.15,<=9.0.0","description":"Zimbra Collaboration未认证路径穿越→RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2022-27925"]},
+    {"id":"CVE-2022-37042","severity":"CRITICAL","cvss_score":9.8,"vendor":"zimbra","product":"zimbra","version_range":">=8.8.15,<=9.0.0","description":"Zimbra Collaboration未认证ZipSlip→RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2022-37042"]},
+    {"id":"CVE-2020-36184","severity":"CRITICAL","cvss_score":9.8,"vendor":"fasterxml","product":"jackson","version_range":"<=2.12.2","description":"Jackson FasterXML反序列化RCE（大量Web服务受影响）。","references":["https://nvd.nist.gov/vuln/detail/CVE-2020-36184"]},
+    {"id":"CVE-2022-29464","severity":"CRITICAL","cvss_score":9.8,"vendor":"wso2","product":"identity_server","version_range":"<=5.11.0","description":"WSO2 Identity Server任意文件上传→未认证RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2022-29464"]},
+    {"id":"CVE-2023-28771","severity":"CRITICAL","cvss_score":9.8,"vendor":"zyxel","product":"flex","version_range":"<=5.36","description":"Zyxel防火墙命令注入→未认证RCE（僵尸网络利用）。","references":["https://nvd.nist.gov/vuln/detail/CVE-2023-28771"]},
+    {"id":"CVE-2021-21551","severity":"CRITICAL","cvss_score":8.8,"vendor":"dell","product":"dbutil","version_range":"<=2.3","description":"Dell dbutil驱动权限提升→内核RCE（APT利用）。","references":["https://nvd.nist.gov/vuln/detail/CVE-2021-21551"]},
+    {"id":"CVE-2022-26925","severity":"HIGH","cvss_score":8.1,"vendor":"microsoft","product":"active_directory","version_range":"*","description":"LSA Spoofing→NTLM中继→域控制器接管（PetitPotam）。","references":["https://nvd.nist.gov/vuln/detail/CVE-2022-26925"]},
+    {"id":"CVE-2023-37580","severity":"CRITICAL","cvss_score":9.8,"vendor":"zimbra","product":"zimbra","version_range":">=8.8.15,<=9.0.0","description":"Zimbra XSS+路径穿越→未认证RCE。","references":["https://nvd.nist.gov/vuln/detail/CVE-2023-37580"]}
+  ]
+}
