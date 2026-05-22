@@ -60,9 +60,7 @@
 ```bash
 git clone <repo-url>
 cd sentinel
-python -m venv .venv
-source .venv/bin/activate   # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
+pip install jinja2
 ```
 
 ### 基本用法
@@ -86,6 +84,9 @@ python sentinel.py -t 192.168.1.1 -p 22,443 -o my_report.html
 # 调整并发数与超时
 python sentinel.py -t 192.168.1.0/24 -p 1-1024 --concurrency 200 --timeout 1.5
 ```
+<img width="661" height="142" alt="image" src="https://github.com/user-attachments/assets/6e5820dd-30ef-455c-86d7-d815565960a7" />
+
+
 
 ## 命令行参数
 
@@ -169,7 +170,7 @@ TLS 探测额外提取证书的 Subject / Issuer / notAfter 字段，用于指�
 
 ## HTML 报告
 
-生成的报告为单个独立 HTML 文件，无需外部 CSS/JS 资源。暗色主题，包含：
+生成的报告为单个独立 HTML 文件，无需外部 CSS/JS 资源。包含：
 
 - **总览卡片** -- 目标数、开放端口数、识别服务数、CVE 命中数、UP/DOWN 主机比
 - **主机汇总表** -- 所有目标的概览，点击跳转到详情
@@ -177,6 +178,8 @@ TLS 探测额外提取证书的 Subject / Issuer / notAfter 字段，用于指�
   - 端口与服务表（含状态、RTT、置信度）
   - 漏洞详情表（CVE ID、严重等级标签、CVSS、匹配依据、描述）
 - 低置信度（< 30%）的服务在表格中弱化显示
+  <img width="1061" height="1156" alt="image" src="https://github.com/user-attachments/assets/981bd72e-cd3d-40d3-be9d-15b242cead67" />
+
 
 ## 项目结构
 
@@ -199,29 +202,11 @@ sentinel/
 │   └── cve/custom/              # 用户自定义 CVE CSV 文件目录
 ├── templates/
 │   └── report.html              # Jinja2 报告模板（暗色主题, 内联 CSS）
-├── tests/
-│   ├── test_port_scanner.py
-│   ├── test_probe_sender.py
-│   ├── test_fingerprinter.py
-│   ├── test_cve_matcher.py
-│   ├── test_reporter.py
-│   └── test_integration.py
 ├── output/                      # 报告输出目录（首次运行自动创建）
 ├── requirements.txt
 └── README.md
 ```
 
-## 运行测试
-
-```bash
-# 运行全部测试
-python -m pytest tests/ -v
-
-# 运行单个模块
-python -m pytest tests/test_port_scanner.py -v
-```
-
-测试使用 mock socket/ssl，不依赖真实网络环境。
 
 ## 项目约束
 
