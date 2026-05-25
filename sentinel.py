@@ -20,7 +20,7 @@ from scanner.probe_sender import probe_host
 from scanner.fingerprinter import fingerprint_host
 from scanner.cve_matcher import match_host
 from report.html_reporter import generate_report
-from models import ScanReport
+from models import PortStatus, ScanReport
 
 _TOP100_PORTS = [
     21, 22, 23, 25, 53, 80, 81, 110, 111, 135,
@@ -134,6 +134,66 @@ async def run_scan(
         vulnerabilities=all_vulns,
     )
 
+def _print_scan_summary(report: ScanReport) -> None:
+    """Print scan results table to stdout (nmap-like format)"""
+    up_count = sum(1 for h in report.host_results if h.status == "up")
+    down_count = len(report.host_results) - up_count
+
+    total_open = sum(
+        sum(1 for p in h.ports if p.status == PortStatus.OPEN)
+        for h in report.host_results
+    )
+    total_services = sum(len(svcs) for svcs in report.services)
+    total_cves = sum(len(vulns) for vulns in report.vulnerabilities)
+
+    print()
+    print("=" * 78)
+    print(f"  Sentinel  —  {len(report.host_results)} host(s) scanned in {report.duration_seconds}s")
+    print("=" * 78)
+
+    for idx, host_result in enumerate(report.host_results):
+        if host_result.status != "up":
+            continue
+
+        services = report.services[idx] if idx < len(report.services) else []
+        vulns = report.vulnerabilities[idx] if idx < len(report.vulnerabilities) else []
+        svc_map = {s.port: s for s in services}
+        open_ports = [p for p in host_result.ports if p.status == PortStatus.OPEN]
+
+        print(f"\n  {host_result.host:<60} [UP]")
+
+        for p in open_ports:
+            svc = svc_map.get(p.port)
+            protocol = svc.protocol if svc and svc.protocol != "unknown" else "-"
+            version = svc.version if svc and svc.version else ""
+            version_str = f"  {version}" if version else ""
+            print(f"    {str(p.port) + '/tcp':<9} {protocol:<22}{version_str}")
+
+        if not open_ports:
+            print(f"    (no open ports)")
+
+        if vulns:
+            sev_counts: dict = {}
+            for v in vulns:
+                sev_counts[v.severity] = sev_counts.get(v.severity, 0) + 1
+            sev_parts = ", ".join(f"{c} {s}" for s, c in sorted(sev_counts.items()))
+            print(f"    {len(services)} services  ·  {len(vulns)} CVEs ({sev_parts})")
+        elif services:
+            print(f"    {len(services)} services  ·  0 CVEs")
+
+    print()
+    print(f"  {up_count} hosts UP, {down_count} hosts DOWN")
+    print(f"  {total_open} open ports, {total_services} services, {total_cves} CVEs")
+
+
+def _report_link(path: Path) -> str:
+    """Format the report path as a clickable file:// URL.
+
+    Most modern terminals (Windows Terminal, iTerm2, GNOME Terminal, VS Code)
+    auto-detect file:// URLs and make them Ctrl+Click clickable.
+    """
+    file_url = path.resolve().as_uri()
+    return f"\n  Report: {file_url}\n"
 
 def main() -> None:
     parser = argparse.ArgumentParser(
@@ -172,15 +232,18 @@ def main() -> None:
         retries=args.retries,
     ))
 
-    output_path = Path(args.output) if args.output else None
-    generate_report(report, output_path)
-    if output_path:
-        print(f"报告已生成: {output_path}")
+    _print_scan_summary(report)
+
+    # Determine output path before calling generate_report
+    if args.output:
+        output_path = Path(args.output)
     else:
-        output_dir = Path(__file__).parent / "output"
-        files = sorted(output_dir.glob("report_*.html"), key=lambda f: f.stat().st_mtime, reverse=True)
-        if files:
-            print(f"报告已生成: {files[0]}")
+        ts = time.strftime("%Y%m%d_%H%M%S", time.localtime())
+        output_path = Path(__file__).parent / "output" / f"report_{ts}.html"
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    generate_report(report, output_path)
+    print(_report_link(output_path))
 
 
 if __name__ == "__main__":
