@@ -31,11 +31,11 @@ def generate_report(report: ScanReport, output_path: Optional[Path] = None) -> s
 
     if output_path is None:
         output_dir = Path(__file__).parent.parent / "output"
-        output_dir.mkdir(parents=True, exist_ok=True)
         ts = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
         output_path = output_dir / f"report_{ts}.html"
 
-    Path(output_path).write_text(html, encoding="utf-8")
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text(html, encoding="utf-8")
     return html
 
 
