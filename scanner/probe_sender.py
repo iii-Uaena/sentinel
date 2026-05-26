@@ -226,6 +226,118 @@ async def tls_https_get(host: str, port: int, timeout: float = 3.0) -> ProbeResu
 _TLS_PORTS = {443, 8443}
 _HTTP_PORTS = {80, 8080, 8000, 8888}
 
+# 构造 SMB1 Negotiate Protocol Request（端口 445）
+_smb_header = bytes([
+    0xFF, 0x53, 0x4D, 0x42,  # Protocol: \xffSMB
+    0x72,                      # Command: Negotiate (0x72)
+    0x00, 0x00, 0x00, 0x00,   # NT Status
+    0x18,                      # Flags: canonicalized + case-insensitive
+    0x01, 0xC8,                # Flags2: NT status + long names + unicode
+    0x00, 0x00,                # PID High
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,  # Security Features
+    0x00, 0x00,                # Reserved
+    0x00, 0x00,                # TID
+    0xFE, 0xFF,                # PID Low
+    0x00, 0x00,                # UID
+    0x00, 0x00,                # MID
+])
+_smb_dialects = b""
+for _d in [b"PC NETWORK PROGRAM 1.0", b"LANMAN1.0", b"LM1.2X002",
+           b"LANMAN2.1", b"NT LM 0.12", b"SMB 2.002"]:
+    _smb_dialects += b"\x02" + _d + b"\x00"
+_smb_msg = _smb_header + b"\x00" + len(_smb_dialects).to_bytes(2, "little") + _smb_dialects
+# NetBIOS Session 头: type=0x00 (会话消息), length=24-bit 大端
+_SMB_NEGOTIATE = bytes([
+    0x00,
+    (len(_smb_msg) >> 16) & 0xFF,
+    (len(_smb_msg) >> 8) & 0xFF,
+    len(_smb_msg) & 0xFF,
+]) + _smb_msg
+
+# TPKT + COTP 连接请求 + RDP 协商请求（端口 3389）
+_RDP_NEGOTIATION = bytes([
+    0x03, 0x00, 0x00, 0x13,  # TPKT: version=3, reserved=0, length=19
+    0x0E,                      # COTP length (14 bytes including this)
+    0xE0,                      # PDU type: CR (Connection Request)
+    0x00, 0x00,                # DST-REF
+    0x00, 0x00,                # SRC-REF
+    0x00,                      # Options: class 0, no extended formats
+    0x01,                      # RDP Negotiation Request type
+    0x00,                      # Flags
+    0x00, 0x00,                # Length (bytes following)
+    0x00, 0x00, 0x00, 0x00,   # Requested Protocols (0 = negotiate)
+])
+
+# 协议专用端口集合
+_SMB_PORTS = {445}
+_RDP_PORTS = {3389}
+
+
+async def _smb_probe(host: str, port: int, timeout: float = 2.0) -> ProbeResult:
+    """Send SMB Negotiate Protocol Request (port 445), detect SMB/Samba by response"""
+    try:
+        reader, writer = await asyncio.wait_for(
+            asyncio.open_connection(host, port),
+            timeout=timeout,
+        )
+        writer.write(_SMB_NEGOTIATE)
+        await writer.drain()
+        raw = await _read_some(reader, timeout)
+
+        writer.close()
+        try:
+            await writer.wait_closed()
+        except Exception:
+            pass
+
+        if raw and raw[:4] == b"\xffSMB":
+            # SMB 响应确认 — 注入可读标签供 fingerprinter 匹配
+            banner = "SMB Negotiate Response"
+        else:
+            banner = raw.decode("utf-8", errors="replace").strip() if raw else None
+
+        return ProbeResult(
+            host=host,
+            port=port,
+            probe_type="generic_banner",
+            banner=banner,
+        )
+    except (ConnectionRefusedError, asyncio.TimeoutError, OSError) as e:
+        return ProbeResult(host=host, port=port, probe_type="generic_banner", error=str(e))
+
+
+async def _rdp_probe(host: str, port: int, timeout: float = 2.0) -> ProbeResult:
+    """发送 TPKT 连接请求（端口 3389），通过响应 magic bytes 检测 RDP"""
+    try:
+        reader, writer = await asyncio.wait_for(
+            asyncio.open_connection(host, port),
+            timeout=timeout,
+        )
+        writer.write(_RDP_NEGOTIATION)
+        await writer.drain()
+        raw = await _read_some(reader, timeout)
+
+        writer.close()
+        try:
+            await writer.wait_closed()
+        except Exception:
+            pass
+
+        if raw and len(raw) >= 4 and raw[:1] == b"\x03" and raw[1:2] == b"\x00":
+            # TPKT 头检测到（版本 3，保留字段 0）
+            banner = "TPKT RDP Negotiation Response"
+        else:
+            banner = raw.decode("utf-8", errors="replace").strip() if raw else None
+
+        return ProbeResult(
+            host=host,
+            port=port,
+            probe_type="generic_banner",
+            banner=banner,
+        )
+    except (ConnectionRefusedError, asyncio.TimeoutError, OSError) as e:
+        return ProbeResult(host=host, port=port, probe_type="generic_banner", error=str(e))
+
 
 async def probe_port(host: str, port: int, timeout: float = 2.0) -> ProbeResult:
     """根据端口号选择探测策略并执行探测
@@ -236,15 +348,24 @@ async def probe_port(host: str, port: int, timeout: float = 2.0) -> ProbeResult:
       其他端口 → grab_banner
     """
     if port in _TLS_PORTS:
+        # TLS 端口：超时比纯 TCP 长（TLS 多一次往返）
         tls_timeout = max(timeout, 3.0)
         result = await tls_https_get(host, port, tls_timeout)
         if result.error is not None:
+            # TLS 可能因证书/协议不匹配失败，回退到纯 HTTP GET
             result = await http_get(host, port, timeout)
         return result
 
     if port in _HTTP_PORTS:
         return await http_get(host, port, timeout)
 
+    if port in _SMB_PORTS:
+        return await _smb_probe(host, port, timeout)
+
+    if port in _RDP_PORTS:
+        return await _rdp_probe(host, port, timeout)
+
+    # 非特定协议端口：使用通用 banner 抓取
     return await grab_banner(host, port, timeout)
 
 

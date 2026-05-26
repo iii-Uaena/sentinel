@@ -172,14 +172,15 @@ def _print_scan_summary(report: ScanReport) -> None:
         if not open_ports:
             print(f"    (no open ports)")
 
+        id_count = sum(1 for s in services if s.protocol != "unknown")
         if vulns:
             sev_counts: dict = {}
             for v in vulns:
                 sev_counts[v.severity] = sev_counts.get(v.severity, 0) + 1
             sev_parts = ", ".join(f"{c} {s}" for s, c in sorted(sev_counts.items()))
-            print(f"    {len(services)} services  ·  {len(vulns)} CVEs ({sev_parts})")
-        elif services:
-            print(f"    {len(services)} services  ·  0 CVEs")
+            print(f"    {id_count} services  ·  {len(vulns)} CVEs ({sev_parts})")
+        elif id_count > 0:
+            print(f"    {id_count} services  ·  0 CVEs")
 
     print()
     print(f"  {up_count} hosts UP, {down_count} hosts DOWN")

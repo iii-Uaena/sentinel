@@ -45,7 +45,10 @@ def _match_rule(rule: dict, result: ProbeResult) -> Optional[Tuple[str, float]]:
     if not pattern:
         return None
 
-    m = re.search(pattern, target, re.IGNORECASE)
+    flags = re.IGNORECASE
+    if rule.get("dotall"):
+        flags |= re.DOTALL
+    m = re.search(pattern, target, flags)
     if not m:
         return None
 

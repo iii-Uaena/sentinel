@@ -20,6 +20,15 @@
         "confidence": 0.95
       },
       {
+        "id": "ftp-filezilla",
+        "regex": "FileZilla\\s+Server\\s*([\\d.]+)?",
+        "vendor": "filezilla",
+        "product": "filezilla_server",
+        "name": "FileZilla Server",
+        "protocol": "ftp",
+        "confidence": 0.9
+      },
+      {
         "id": "ftp-proftpd",
         "regex": "ProFTPD\\s+([\\d.]+)",
         "vendor": "proftpd",
@@ -45,6 +54,9 @@
         "name": "Pure-FTPd",
         "protocol": "ftp",
         "confidence": 0.85
+      },
+      {
+        
       },
       {
         "id": "ftp-generic",
